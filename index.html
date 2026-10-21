@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090b18" />
+  <title>3D Portfolio — แพรวา รอดสดใส</title>
+  <meta name="description" content="แฟ้มสะสมผลงาน 3D ของแพรวา รอดสดใส สาขาการออกแบบสื่อดิจิทัล เกมและแอนิเมชัน" />
+  <style>
+    :root{--bg:#fff7fb;--panel:rgba(255,255,255,.78);--line:rgba(229,169,198,.48);--text:#694c69;--muted:#987f98;--a:#f49ac2;--b:#8bded0}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(ellipse at 78% 5%,#ffe0ef 0,transparent 38%),radial-gradient(ellipse at 8% 65%,#dcf8f0 0,transparent 36%),radial-gradient(ellipse at 48% 100%,#fff0d9 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,"Noto Sans Thai",system-ui,-apple-system,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none} .wrap{width:min(1120px,92%);margin:auto}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:18px} .brand{font-weight:800;letter-spacing:.08em}.brand span{color:var(--b)}
+    .navlinks{display:flex;gap:22px;color:var(--muted);font-size:.9rem}.navlinks a:hover{color:var(--b)}
+    .hero{min-height:76vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:24px;padding:45px 0 70px}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:7px 13px;color:var(--b);font-size:.8rem;letter-spacing:.08em;background:var(--panel)}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--b);box-shadow:0 0 15px var(--b)}
+    h1{font-size:clamp(3rem,7vw,6rem);line-height:1.02;letter-spacing:-.055em;margin:23px 0 18px} h1 .gradient{background:linear-gradient(100deg,#ed83b0 10%,#b39af8 52%,#65cbbb);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .intro{color:var(--muted);font-size:1.08rem;max-width:560px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;font-weight:700;border:1px solid var(--line);transition:.2s}
+    .btn.primary{background:linear-gradient(110deg,#f7a6c9,#c8b6ff 58%,#bdeee3);color:#694c69;border:0}.btn:hover{transform:translateY(-3px)}
+    #scene{height:460px;min-width:0;position:relative;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 48%,rgba(244,154,194,.25),transparent 52%),rgba(255,255,255,.55)}
+    #scene canvas{display:block;width:100%;height:100%}.scene-label{position:absolute;bottom:17px;left:18px;color:var(--muted);font-size:.78rem;pointer-events:none}
+    section{padding:66px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:26px}.kicker{color:var(--b);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}.section-head h2{font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin:7px 0 0;letter-spacing:-.04em}.section-head p{color:var(--muted);max-width:440px;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:23px;border:1px solid var(--line);border-radius:20px;background:var(--panel);backdrop-filter:blur(12px);transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-5px);border-color:rgba(154,140,255,.65)}
+    .icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(244,154,194,.34),rgba(139,222,208,.35));font-size:1.25rem;margin-bottom:18px}
+    .card h3{margin:0 0 7px;font-size:1.12rem}.card p{margin:0;color:var(--muted);font-size:.94rem}.taglist{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.tag{font-size:.78rem;color:#805e83;padding:5px 9px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:8px}
+    .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.about-quote{font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.35;font-weight:650;letter-spacing:-.03em}.about-copy{color:var(--muted)}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}.fact{padding:15px;border-radius:14px;border:1px solid var(--line)}.fact small{display:block;color:var(--muted);margin-bottom:4px}.fact strong{font-size:.98rem}
+    .timeline{display:grid;gap:12px}.timeline-item{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:20px 22px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}.timeline-item time{color:var(--b);font-size:.9rem}.timeline-item h3{margin:0 0 5px}.timeline-item p{margin:0;color:var(--muted)}
+    .contact{border:1px solid var(--line);border-radius:26px;padding:clamp(24px,5vw,48px);background:linear-gradient(120deg,rgba(255,205,226,.72),rgba(204,247,237,.72));display:flex;justify-content:space-between;align-items:center;gap:24px}.contact h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.1;margin:8px 0}.contact p{color:var(--muted);margin-bottom:0}.contact-links{display:flex;gap:10px;flex-wrap:wrap}
+    footer{padding:28px 0 38px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;font-size:.82rem}
+    .card{box-shadow:0 12px 32px rgba(213,151,185,.10)}
+    .eyebrow{background:rgba(255,255,255,.78);border-color:rgba(244,154,194,.45);color:#bf6795}
+    .scene-label{color:#947b98}
+    ::selection{background:#f8c5dc;color:#694c69}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:28px}.hero-copy{padding-top:20px}#scene{height:360px}.grid{grid-template-columns:1fr 1fr}.about{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.contact{align-items:start;flex-direction:column}}
+    @media(max-width:540px){.navlinks{gap:12px;font-size:.78rem}.navlinks a:nth-child(2){display:none}.grid{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr;gap:5px}.facts{grid-template-columns:1fr 1fr}footer{flex-direction:column}.hero{min-height:auto;padding-bottom:38px}#scene{height:310px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav aria-label="เมนูหลัก">
+      <a class="brand" href="#home">PRAEWA<span>.PORTFOLIO</span></a>
+      <div class="navlinks"><a href="#about">เกี่ยวกับฉัน</a><a href="#work">ผลงาน</a><a href="#journey">ประวัติ</a><a href="#contact">ติดต่อ</a></div>
+    </nav>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="dot"></span> PERSONAL PORTFOLIO · 2026</div>
+          <h1>สวัสดี,<br>ฉันคือ <span class="gradient">แพรวา</span></h1>
+          <p class="intro">นักออกแบบสื่อดิจิทัลที่สนใจการออกแบบตัวละคร การสร้างคอนเซปต์ และการถ่ายทอดไอเดียผ่านภาพ รวบรวมผลงานด้านการเล่าเรื่อง สตอรีบอร์ด แอนิเมชัน และการสร้างสรรค์โลก 2D/3D ไว้ในพื้นที่เดียว</p>
+          <div class="actions"><a class="btn primary" href="#work">ชมผลงาน ↓</a><a class="btn" href="#contact">ติดต่อฉัน ↗</a></div>
+        </div>
+        <div id="scene" aria-label="วัตถุสามมิติที่หมุนได้"><div class="scene-label">INTERACTIVE 3D OBJECT · DRAG TO ROTATE</div></div>
+      </section>
+
+      <section id="about">
+        <div class="section-head"><div><div class="kicker">01 / About me</div><h2>รู้จักฉันให้มากขึ้น</h2></div><p>แนะนำตัวตน ความสนใจ และเป้าหมายของฉัน</p></div>
+        <div class="about">
+          <div class="card"><div class="about-quote">“เปลี่ยนจินตนาการให้กลายเป็นเรื่องราว ผ่านตัวละคร ภาพ และแอนิเมชัน”</div></div>
+          <div class="card"><p class="about-copy">ฉันชอบงานออกแบบและงานสร้างสรรค์ โดยเฉพาะการออกแบบตัวละคร การสร้างคอนเซปต์ และการถ่ายทอดไอเดียผ่านภาพ มีความสนใจในงานกราฟิก พร้อมเรียนรู้สิ่งใหม่ ๆ และพัฒนาทักษะการออกแบบอยู่เสมอ</p>
+            <div class="facts">
+              <div class="fact"><small>ชื่อ–นามสกุล</small><strong>นางสาวแพรวา รอดสดใส</strong></div>
+              <div class="fact"><small>ชื่อเล่น</small><strong>ปาล์ม</strong></div>
+              <div class="fact"><small>สถานศึกษา</small><strong>คณะสถาปัตยกรรมศาสตร์</strong></div>
+              <div class="fact"><small>สาขา / ระดับชั้น</small><strong>การออกแบบสื่อดิจิทัล · เกมและแอนิเมชัน</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work">
+        <div class="section-head"><div><div class="kicker">02 / Selected work</div><h2>ผลงานที่ภูมิใจ</h2></div><p>ผลงานที่สะท้อนความสนใจด้านการเล่าเรื่อง การออกแบบภาพ และการสร้างตัวละคร</p></div>
+        <div class="grid">
+          <article class="card"><div class="icon">✦</div><h3>นาเดีย — Story & Storyboard</h3><p>เรื่องราวของเด็กหญิงที่เติบโตภายใต้ความคาดหวัง เรียนรู้ที่จะสื่อสารความรู้สึกและให้ครอบครัวเข้าใจตัวตนของเธอ</p><div class="taglist"><span class="tag">Storytelling</span><span class="tag">Storyboard</span></div></article>
+          <article class="card"><div class="icon">◈</div><h3>Ice Cream Animation</h3><p>โครงการ OFOS ทีม M150 แอนิเมชันเกี่ยวกับสาวออฟฟิศที่ทุ่มเทให้การทำงานจนหมดแรง ก่อนพบรถไอศกรีมที่เติมเต็มความต้องการในใจ รับหน้าที่ Story Concept และ Color</p><div class="taglist"><span class="tag">Story Concept</span><span class="tag">Color</span></div></article>
+          <article class="card"><div class="icon">◎</div><h3>Friend Forever — Character Design</h3><p>ออกแบบตุ๊กตาหมีที่อยู่กับเด็กคนหนึ่งมาเป็นเวลานาน จึงมีรอยเย็บและรอยขาด ใช้สีสันสดใสเพื่อสื่อถึงความโดดเด่นและความเป็นเพื่อนในจินตนาการ</p><div class="taglist"><span class="tag">Character Design</span><span class="tag">Color Design</span></div></article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-head"><div><div class="kicker">03 / Skills</div><h2>ทักษะและความสนใจ</h2></div><p>ทักษะด้านการออกแบบและการสร้างสรรค์ที่ระบุใน Portfolio</p></div>
+        <div class="grid">
+          <article class="card"><div class="icon">✎</div><h3>ความคิดสร้างสรรค์</h3><p>แต่งเนื้อเรื่อง สร้างคอนเซปต์ และออกแบบการเล่าเรื่องด้วยภาพ</p></article>
+          <article class="card"><div class="icon">⌘</div><h3>ทักษะดิจิทัล</h3><p>วาดฉาก ปั้นโมเดล 3 มิติ ทำแอนิเมชัน 2 มิติ และสร้างสภาพแวดล้อม 3 มิติ</p></article>
+          <article class="card"><div class="icon">↗</div><h3>ทักษะการทำงาน</h3><p>ออกแบบตัวละคร เขียนสตอรีบอร์ด และจัดองค์ประกอบภาพสำหรับถ่ายโปรโมตสปอนเซอร์ในงานสัมมนา</p></article>
+        </div>
+      </section>
+
+      <section id="journey">
+        <div class="section-head"><div><div class="kicker">04 / My journey</div><h2>เส้นทางการเรียนรู้</h2></div><p>ประวัติการศึกษา กิจกรรม และประสบการณ์ที่สำคัญ</p></div>
+        <div class="timeline">
+          <div class="timeline-item"><time>การศึกษา</time><div><h3>คณะสถาปัตยกรรมศาสตร์</h3><p>สาขาการออกแบบสื่อดิจิทัล · เกมและแอนิเมชัน</p></div></div>
+          <div class="timeline-item"><time>ประสบการณ์</time><div><h3>โครงการ OFOS ทีม M150 — Ice Cream Animation</h3><p>รับผิดชอบด้าน Story Concept และ Color</p></div></div>
+          <div class="timeline-item"><time>ผลงานอื่น ๆ</time><div><h3>Photography & Composition</h3><p>จัดองค์ประกอบภาพในการถ่ายโปรโมตสปอนเซอร์ในงานสัมมนา</p></div></div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact"><div><div class="kicker">05 / Get in touch</div><h2>มาสร้างสิ่งดี ๆ<br>ไปด้วยกัน</h2><p>ขอบคุณที่เข้ามาชม Portfolio ของฉัน</p></div><div class="contact-links"><a class="btn primary" href="mailto:">ส่งอีเมล ↗</a><a class="btn" href="https://canva.link/tyut5i8any9iz9i" target="_blank" rel="noreferrer">เปิด Portfolio ใน Canva ↗</a></div></div>
+      </section>
+    </main>
+    <footer><span>© 2026 · แพรวา รอดสดใส — 3D Portfolio</span><a href="#home">กลับขึ้นด้านบน ↑</a></footer>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    const container = document.getElementById('scene');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    camera.position.set(0, 0, 7.4);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    container.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+    const keyLight = new THREE.PointLight(0xffacd0, 35, 30);
+    keyLight.position.set(3, 3, 5); scene.add(keyLight);
+    const rimLight = new THREE.PointLight(0x9ce8d8, 28, 25);
+    rimLight.position.set(-4, -2, 3); scene.add(rimLight);
+
+    const group = new THREE.Group(); scene.add(group);
+    const gemGeometry = new THREE.IcosahedronGeometry(1.65, 1);
+    const gemMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0xffb8d5, metalness: 0.18, roughness: 0.24,
+      transmission: 0.16, thickness: 0.8, clearcoat: 1,
+      clearcoatRoughness: 0.12, flatShading: true
+    });
+    const gem = new THREE.Mesh(gemGeometry, gemMaterial); group.add(gem);
+
+    const wire = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.9, 1),
+      new THREE.MeshBasicMaterial({ color: 0x8bded0, wireframe: true, transparent: true, opacity: 0.28 })
+    );
+    group.add(wire);
+
+    const ringMaterial = new THREE.MeshBasicMaterial({ color: 0xf39bc4, transparent: true, opacity: 0.7 });
+    const ring1 = new THREE.Mesh(new THREE.TorusGeometry(2.35, 0.012, 8, 160), ringMaterial);
+    ring1.rotation.set(1.05, 0.2, 0.4); group.add(ring1);
+    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.65, 0.008, 8, 160),
+      new THREE.MeshBasicMaterial({ color: 0x8bded0, transparent: true, opacity: 0.45 }));
+    ring2.rotation.set(0.3, 1.05, -0.45); group.add(ring2);
+
+    const starPositions = [];
+    for (let i = 0; i < 420; i++) {
+      starPositions.push((Math.random() - .5) * 15, (Math.random() - .5) * 10, (Math.random() - .5) * 8 - 1);
+    }
+    const starGeometry = new THREE.BufferGeometry();
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+    const stars = new THREE.Points(starGeometry, new THREE.PointsMaterial({ color: 0xf4b5d2, size: 0.018, transparent: true, opacity: .75 }));
+    scene.add(stars);
+
+    let pointerDown = false, lastX = 0, lastY = 0, targetX = 0, targetY = 0;
+    container.addEventListener('pointerdown', e => { pointerDown = true; lastX = e.clientX; lastY = e.clientY; container.setPointerCapture(e.pointerId); });
+    container.addEventListener('pointermove', e => {
+      if (!pointerDown) return;
+      targetY += (e.clientX - lastX) * .008;
+      targetX += (e.clientY - lastY) * .008;
+      lastX = e.clientX; lastY = e.clientY;
+    });
+    container.addEventListener('pointerup', () => pointerDown = false);
+    container.addEventListener('pointercancel', () => pointerDown = false);
+
+    function resize() {
+      const w = Math.max(container.clientWidth, 1), h = Math.max(container.clientHeight, 1);
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+    }
+    const observer = new ResizeObserver(resize); observer.observe(container); resize();
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      if (!reduceMotion) {
+        group.rotation.y += (targetY - group.rotation.y) * .045;
+        group.rotation.x += (targetX - group.rotation.x) * .045;
+        group.rotation.y += .0025;
+        gem.position.y = Math.sin(t * .8) * .09;
+        wire.rotation.y = -t * .08; wire.rotation.x = t * .05;
+        ring1.rotation.z += .0018; ring2.rotation.x += .0012;
+        stars.rotation.y = t * .008;
+      }
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
